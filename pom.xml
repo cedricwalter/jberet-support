@@ -14,6 +14,21 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <packaging>pom</packaging>
+    <modules>
+        <module>jberet-artemis</module>
+        <module>jberet-cassandra</module>
+        <module>jberet-csv</module>
+        <module>jberet-excel</module>
+        <module>jberet-jdbc</module>
+        <module>jberet-jms</module>
+        <module>jberet-jpa</module>
+        <module>jberet-json</module>
+        <module>jberet-kafka</module>
+        <module>jberet-mongo</module>
+        <module>jberet-rest</module>
+        <module>jberet-xml</module>
+    </modules>
 
     <parent>
         <groupId>org.jberet</groupId>
@@ -28,85 +43,22 @@
         <jvmArgs>-Xms512m -Xmx2g</jvmArgs>
         <version.org.jberet>1.4.0.Alpha</version.org.jberet>
         <version.org.mongojack>2.8.2</version.org.mongojack>
-        <version.org.apache.kafka>0.9.0.0</version.org.apache.kafka>
-        <version.net.sf.jasperreports>6.1.0</version.net.sf.jasperreports>
-        <version.org.apache.activemq.artemis>1.5.0</version.org.apache.activemq.artemis>
 
-        <version.org.beanio>2.1.0</version.org.beanio>
+        <version.net.sf.jasperreports>6.1.0</version.net.sf.jasperreports>
+
+
         <version.org.ow2.asm>5.0.4</version.org.ow2.asm>
 
+        <maven.compiler.source>15</maven.compiler.source>
+        <maven.compiler.target>15</maven.compiler.target>
     </properties>
 
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>org.mongojack</groupId>
-                <artifactId>mongojack</artifactId>
-                <version>${version.org.mongojack}</version>
-                <scope>provided</scope>
-                <exclusions>
-                    <exclusion>
-                        <groupId>javax.persistence</groupId>
-                        <artifactId>persistence-api</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-
-            <!-- Kafka ItemReader & ItemWriter dependencies -->
-            <dependency>
-                <groupId>org.apache.kafka</groupId>
-                <artifactId>kafka-clients</artifactId>
-                <version>${version.org.apache.kafka}</version>
-                <scope>provided</scope>
-            </dependency>
-
-            <!-- JasperReports dependencies -->
-            <dependency>
                 <groupId>net.sf.jasperreports</groupId>
                 <artifactId>jasperreports</artifactId>
                 <version>${version.net.sf.jasperreports}</version>
-                <scope>provided</scope>
-            </dependency>
-
-            <!-- Artemis ItemReader & ItemWriter dependencies -->
-            <dependency>
-                <groupId>org.apache.activemq</groupId>
-                <artifactId>artemis-core-client</artifactId>
-                <version>${version.org.apache.activemq.artemis}</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.activemq</groupId>
-                <artifactId>artemis-commons</artifactId>
-                <version>${version.org.apache.activemq.artemis}</version>
-                <scope>provided</scope>
-            </dependency>
-
-            <!-- JmsItemReader & JmsItemWriter test dependencies -->
-            <dependency>
-                <groupId>org.apache.activemq</groupId>
-                <artifactId>artemis-server</artifactId>
-                <version>${version.org.apache.activemq.artemis}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.activemq</groupId>
-                <artifactId>artemis-jms-server</artifactId>
-                <version>${version.org.apache.activemq.artemis}</version>
-                <scope>test</scope>
-            </dependency>
-
-            <!-- BeanIO dependencies -->
-            <dependency>
-                <groupId>org.beanio</groupId>
-                <artifactId>beanio</artifactId>
-                <version>${version.org.beanio}</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.ow2.asm</groupId>
-                <artifactId>asm</artifactId>
-                <version>${version.org.ow2.asm}</version>
                 <scope>provided</scope>
             </dependency>
         </dependencies>
@@ -118,106 +70,12 @@
             <groupId>org.jboss.spec.javax.xml.bind</groupId>
             <artifactId>jboss-jaxb-api_2.2_spec</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.mongodb</groupId>
-            <artifactId>mongo-java-driver</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.mongojack</groupId>
-            <artifactId>mongojack</artifactId>
-        </dependency>
+
         <dependency>
             <groupId>org.hibernate.javax.persistence</groupId>
             <artifactId>hibernate-jpa-2.1-api</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>com.fasterxml</groupId>
-            <artifactId>aalto-xml</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.codehaus.woodstox</groupId>
-            <artifactId>stax2-api</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>net.sf.supercsv</groupId>
-            <artifactId>super-csv</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-annotations</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.dataformat</groupId>
-            <artifactId>jackson-dataformat-xml</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.module</groupId>
-            <artifactId>jackson-module-jaxb-annotations</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.dataformat</groupId>
-            <artifactId>jackson-dataformat-csv</artifactId>
-        </dependency>
-
-        <!-- beanio dependencies -->
-        <dependency>
-            <groupId>org.beanio</groupId>
-            <artifactId>beanio</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.ow2.asm</groupId>
-            <artifactId>asm</artifactId>
-        </dependency>
-
-        <!-- Excel dependencies -->
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>commons-codec</groupId>
-            <artifactId>commons-codec</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi-ooxml</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi-ooxml-schemas</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.xmlbeans</groupId>
-            <artifactId>xmlbeans</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>dom4j</groupId>
-            <artifactId>dom4j</artifactId>
-        </dependency>
-
-        <!-- JMS reader & writer dependencies -->
-        <dependency>
-            <groupId>org.jboss.spec.javax.jms</groupId>
-            <artifactId>jboss-jms-api_2.0_spec</artifactId>
-        </dependency>
-
-        <!-- Kafka ItemReader & ItemWriter dependencies -->
-        <dependency>
-            <groupId>org.apache.kafka</groupId>
-            <artifactId>kafka-clients</artifactId>
-        </dependency>
-
-        <!-- Bean Validation dependencies -->
         <dependency>
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
@@ -235,23 +93,11 @@
             <artifactId>javax.el</artifactId>
         </dependency>
 
-        <!-- JasperReports dependencies -->
         <dependency>
             <groupId>net.sf.jasperreports</groupId>
             <artifactId>jasperreports</artifactId>
         </dependency>
 
-        <!-- JAX-RS dependencies -->
-        <dependency>
-            <groupId>org.jboss.spec.javax.ws.rs</groupId>
-            <artifactId>jboss-jaxrs-api_2.0_spec</artifactId>
-        </dependency>
-
-        <!-- Cassandra dependencies -->
-        <dependency>
-            <groupId>com.datastax.cassandra</groupId>
-            <artifactId>cassandra-driver-core</artifactId>
-        </dependency>
 
         <!-- Test Dependencies -->
         <dependency>
@@ -297,16 +143,7 @@
             <artifactId>jboss-marshalling</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.apache.activemq</groupId>
-            <artifactId>artemis-server</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.activemq</groupId>
-            <artifactId>artemis-jms-server</artifactId>
-            <scope>test</scope>
-        </dependency>
+
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-joda</artifactId>

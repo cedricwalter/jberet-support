@@ -8,7 +8,7 @@
  * SPDX-License-Identifier: EPL-2.0
  */
 
-package org.jberet.support.io;
+package org.jberet.support.jdbc;
 
 import java.io.InputStream;
 import java.io.Reader;
